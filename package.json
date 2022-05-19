@@ -1,0 +1,25 @@
+{
+  "name": "easy-im",
+  "version": "1.0.0",
+  "description": "easy-im electron",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/easy-im/electron-app.git"
+  },
+  "keywords": [
+    "easy-im"
+  ],
+  "author": "easy-im-team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/easy-im/electron-app/issues"
+  },
+  "homepage": "https://github.com/easy-im/electron-app#readme",
+  "devDependencies": {
+    "electron": "^18.2.4"
+  }
+}
