@@ -1,4 +1,7 @@
 /** @type {Object.<string,import('electron').BrowserWindowConstructorOptions>} */
+/**
+ * 页面窗口配置
+ */
 const windowConfig = {
   Login: {
     title: "Easy Im 登陆",
