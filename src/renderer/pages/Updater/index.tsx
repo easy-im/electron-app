@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
 import './styles.css';
 
 const App = () => {
   return (
-    <div>
-      <h1 className='blue-font'>Hello Easy Im</h1>
+    <div className='draggable'>
+      <h1 className='blue-font'>这是更新页面</h1>
     </div>
   );
 };

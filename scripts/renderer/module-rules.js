@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { useFileLoader } = require("./utils");
+const moduleRulesCss = require("./module-rules-css")
 
 module.exports = function (isProduction) {
   return [
@@ -32,18 +33,7 @@ module.exports = function (isProduction) {
         },
       ],
     },
-    {
-      test: /\.css$/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        {
-          loader: "css-loader",
-          options: {
-            sourceMap: false,
-          },
-        },
-      ],
-    },
+    moduleRulesCss(isProduction),
     {
       test: /\.(png|jpe?g|gif)(\?\S*)?$/,
       use: [useFileLoader("images")],

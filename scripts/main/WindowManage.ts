@@ -91,7 +91,7 @@ class WindowManage {
     win.loadURL(winUrl);
 
     win.on("close", (event: any) => {
-      console.log(`close ${winType}`);
+      console.log(`close ${winType}`,'需要确认关闭的页面','confirmCloseWindow');
 
       if (confirmCloseWindow[name]) {
         event.preventDefault();

@@ -7,14 +7,14 @@ exports.findEntries = function findEntries() {
   const pages = fs.readdirSync(pagesRoot)
   const entries = []
   pages.forEach(page => {
-    if (fs.existsSync(path.join(pagesRoot, page, 'main.tsx')) && fs.existsSync(path.join(pagesRoot, page, 'index.html'))) {
+    if (fs.existsSync(path.join(pagesRoot, page, 'index.tsx')) && fs.existsSync(path.join(pagesRoot, page, 'index.html'))) {
       entries.push(page)
     }
   })
   const entry = {}
   const htmlPlugin = []
   entries.forEach(name => {
-    entry[name] = path.resolve(__dirname, `../../src/renderer/pages/${name}/main.tsx`)
+    entry[name] = path.resolve(__dirname, `../../src/renderer/pages/${name}/index.tsx`)
     htmlPlugin.push(new HtmlWebpackPlugin({
       filename: `${name}/index.html`,
       template: path.resolve(__dirname, `../../src/renderer/pages/${name}/index.html`),
