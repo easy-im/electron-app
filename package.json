@@ -4,8 +4,17 @@
   "description": "easy-im electron",
   "main": "index.js",
   "scripts": {
-    "serve:main": "rimraf dist && tsc -p tsconfig.main.json && electron dist/src/main/index.js",
-    "serve:renderer": "webpack-dev-server --progress --config scripts/renderer/webpack.config.js"
+    "serve:main": " npm run main:ts-js && electron dist/src/main/index.js",
+    "serve:renderer": "webpack-dev-server --progress --config scripts/renderer/webpack.config.js",
+    "postinstall": "electron-builder install-app-deps",
+    "main:ts-js": "rimraf dist && tsc -p tsconfig.main.json",
+    "webpack-build:main": "webpack --mode=production --config scripts/main/webpack.config.js",
+    "webpack-build:renderer": "webpack --mode=production --config scripts/renderer/webpack.config.js",
+    "webpack-build-tasks": "npm run webpack-build:renderer && npm run webpack-build:main",
+    "preapp-build-task": "rimraf dist/electron/* dist/renderer-preload/* dist/main/* dist/renderer/*  && npm run main:ts-js",
+    "app-build-task": "npm run webpack-build-tasks && electron-builder",
+    "build:win": "cross-env-shell NODE_ENV=production npm run app-build-task -- --win --x64",
+    "build:mac": "cross-env-shell NODE_ENV=production npm run app-build-task -- --mac"
   },
   "repository": {
     "type": "git",
@@ -24,8 +33,12 @@
     "@types/node": "^17.0.35",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "electron": "^18.2.4",
+    "electron-builder": "^23.0.3",
+    "electron-devtools-installer": "^3.2.0",
+    "electron-notarize": "^1.2.1",
     "electron-reload": "^2.0.0-alpha.1",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
