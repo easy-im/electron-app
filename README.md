@@ -24,6 +24,17 @@ renderer进程在开发环境下是一个多页应用，每个页面在 src/rend
 
 每个子目录必须包含 index.tsx 和 index.html 作为入口
 
+## 打包
++ macOS
+```bash
+npm run build:mac
+```
++ Windows
+```bash
+npm run build:win
+```
+
+
 ## 技术选型
 + React V18.x
 + Webpack v5.x
