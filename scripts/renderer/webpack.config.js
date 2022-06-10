@@ -4,7 +4,7 @@ const { findEntries } = require("./utils")
 const moduleRules = require("./module-rules")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const pkg = require("../../package.json")
-const serveConfig = require("../../configs/serve.json")
+const serveConfig = require("../../src/share/serve.json")
 
 function resolvePath(targetPath) {
   return path.resolve(__dirname, "../../", targetPath)

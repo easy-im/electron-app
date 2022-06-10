@@ -9,13 +9,7 @@ const webViewInstances = Object.create(null);
 const isDevelopment = process.env.NODE_ENV !== "production";
 import windowConfig from "./windowConfig";
 import { Channels } from "../../src/share/channels";
-// const serveConfig = require("../../configs/serve.json");
-
-const serveConfig = {
-  renderer: {
-    port: 8082,
-  },
-};
+import serveConfig from "../../src/share/serve.json"
 
 class WindowManage {
   appMainWindow: null;

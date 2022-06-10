@@ -1,8 +1,11 @@
 {
   "extends": "./tsconfig",
-    "compilerOptions": {
-      "module": "CommonJS",
-      "outDir": "dist",
-    },
-    "include": ["src/main/*.ts", "src/@types/*"],
-  }
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "dist",
+  },
+  "include": [
+    "src/main/*.ts",
+    "src/@types/*"
+  ],
+}
