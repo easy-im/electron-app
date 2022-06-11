@@ -8,6 +8,11 @@
     "jsx": "react",
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "components/*": ["./src/renderer/components/*"],
+      "share/*": ["./src/share/*"]
+    }
   },
   "ts-node": {
     "compilerOptions": {
