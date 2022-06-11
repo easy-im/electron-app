@@ -53,7 +53,9 @@ module.exports = () => {
         api: resolvePath("src/renderer/api"),
         configs: resolvePath("configs"),
         share: resolvePath("src/share")
-      }
+      },
+      // 按顺序解析这些后缀名
+      extensions: ['.js', '.ts', '.tsx'],
     },
 
     plugins: [
