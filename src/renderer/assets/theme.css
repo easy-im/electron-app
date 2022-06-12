@@ -1,0 +1,14 @@
+:root {
+  --color-primary: #1890ff;
+  --color-primary-hov: #40a9ff;
+  --color-primary-active: #096dd9;
+  --color-primary-disabled: #69c0ff;
+  --color-primary-green: #52c41a;
+  --color-danger: #ff4d4f;
+  --color-warning: #ffb946;
+  --color-info: #51b2f9;
+  --windows-button-color: #b3b3b3;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}

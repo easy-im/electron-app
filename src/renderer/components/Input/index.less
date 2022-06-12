@@ -1,0 +1,98 @@
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+
+  &:focus-within {
+    border-color: var(--color-primary-hov);
+    outline: 0;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  }
+  &:hover {
+    border-color: var(--color-primary-hov);
+  }
+
+  .leftIcon {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.25);
+    width: 16px;
+    text-align: center;
+  }
+
+  .rightIcon {
+    font-size: 16px;
+    color: #bfbfbf;
+    &:hover {
+      color: #d9d9d9;
+    }
+    &:active {
+      color: #8c8c8c;
+    }
+  }
+
+  .input-prefix {
+    position: absolute;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    margin-left: 12px;
+  }
+
+  .input-type {
+    width: 100%;
+    color: #262626;
+    border: none;
+    border-radius: 4px;
+    &::-webkit-input-placeholder {
+      color: #bfbfbf;
+    }
+  }
+
+  .have-prefix {
+    padding-left: 32px;
+  }
+  .is-password-input {
+    padding-right: 36px;
+  }
+}
+
+.errorType {
+  border-color: var(--color-danger) !important;
+  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2) !important;
+}
+
+.explainError {
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  color: var(--color-danger);
+  font-size: 12px !important;
+  line-height: 18px !important;
+  white-space: nowrap;
+}
+
+.middle {
+  height: 28px;
+  line-height: 18px !important;
+  font-size: 12px !important;
+  padding: 0 6px;
+}
+
+.small {
+  height: 20px;
+  padding: 0 6px;
+  input {
+    font-size: 12px !important;
+  }
+}
+
+.large {
+  height: 44px;
+  line-height: 20px !important;
+  font-size: 18px !important;
+  padding: 0 16px;
+}

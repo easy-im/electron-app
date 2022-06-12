@@ -1,0 +1,52 @@
+@import "./theme.css";
+
+:not(input):not(textarea),
+:not(input):not(textarea)::after,
+:not(input):not(textarea)::before {
+  user-select: none;
+  cursor: default;
+}
+input,
+button,
+textarea,
+:focus {
+  outline: none;
+}
+input,
+textarea,
+select,
+button {
+  font-family: var(--font-family);
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+}
+
+body {
+  margin: 0;
+}
+
+.message-box {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+}
