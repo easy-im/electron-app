@@ -18,26 +18,32 @@ const App = () => {
   };
 
   const onSubmit = () => {};
-  const closeWindow = () => {};
+  const closeWindow = () => {
+    ipcRenderer.send(Channels.WINDOW.CLOSE, "Login");
+  };
 
-  const isMac = false;
+  const isMac = true;
 
   return (
     <div className="wrapper">
       <div className="login-title-bar">
-        {isMac && (
+        {/* 非mac：右上角显示关闭按钮 */}
+        {!isMac && (
           <button
             type="button"
-            className="tutor-icon closeBtn"
+            className="easyIcon close-btn"
             title="关闭"
-            onClick={closeWindow}
+            onClick={(e) => {
+              e.stopPropagation();
+              closeWindow();
+            }}
           >
-            &#xe611;
+            &#xe759;
           </button>
         )}
       </div>
       <div className="logo">
-        {/* <img src="../../assets/images/logo/logo.png" alt="" /> */}
+        <img src={`../../assets/images/logo/logo.png`} alt="" />
         <img src={img} alt="" />
       </div>
       <div className="title-bar">Easy IM</div>
@@ -49,7 +55,9 @@ const App = () => {
             className="account-style"
           ></Input>
           <Input size="large" placeholder="密码" className="pwd-style"></Input>
-          <Button size="large" className="login-btn" block>登录</Button>
+          <Button size="large" className="login-btn" block>
+            登录
+          </Button>
         </form>
       </div>
     </div>

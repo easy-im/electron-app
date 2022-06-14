@@ -1,6 +1,7 @@
 .wrapper {
   font-size: 22px;
   -webkit-app-region: drag;
+  // background-image: url('../../assets//images/logo//logo.png');
 
   .title-bar {
     font-size: 18px;
@@ -99,4 +100,24 @@
     color: #8c8c8c;
     line-height: 18px;
   }
+  .close-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    color: var(--windows-button-color);
+    -webkit-app-region: no-drag;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    color: var(--color-danger);
+  }
+  
 }
