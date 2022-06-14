@@ -1,4 +1,5 @@
 @import "./theme.css";
+@import "./fonts/iconfont.css";
 
 :not(input):not(textarea),
 :not(input):not(textarea)::after,

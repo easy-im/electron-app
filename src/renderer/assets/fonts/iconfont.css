@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "easyIcon"; /* Project id 3464018 */
+  src: url('iconfont.woff2?t=1655182711593') format('woff2'),
+       url('iconfont.woff?t=1655182711593') format('woff'),
+       url('iconfont.ttf?t=1655182711593') format('truetype');
+}
+
+.easyIcon {
+  font-family: "easyIcon" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconren-zhanghao-fill:before {
+  content: "\e74c";
+}
+
+.iconchuangkoucaozuo-guanbi:before {
+  content: "\e759";
+}
+
+.iconjiantou2zuo-fill:before {
+  content: "\e7b2";
+}
+
+.iconzhongxin-fill:before {
+  content: "\e7cb";
+}
+
+.iconyanjingbi-fill:before {
+  content: "\e71e";
+}
+
+.iconyanjingkai-fill:before {
+  content: "\e720";
+}
+
