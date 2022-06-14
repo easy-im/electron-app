@@ -6,6 +6,7 @@ import { windowManage } from "../../scripts/main/WindowManage";
 import { Channels } from "../share/channels";
 
 app.whenReady().then(async () => {
+  // 打开某个窗口
   ipcMain.on(Channels.WINDOW.OPEN, (event, options) => {
     let name = "";
     let winType = "";
@@ -21,7 +22,7 @@ app.whenReady().then(async () => {
       name,
       isNew: true,
     };
-    console.log("Channels.WINDOW.OPEN", name)
+    console.log("Channels.WINDOW.OPEN", name);
     const winInstance = windowManage.winInstances[name];
     if (winInstance) {
       openWinReplyInfo.isNew = false;
@@ -35,7 +36,15 @@ app.whenReady().then(async () => {
     openWinReplyInfo.isNew = true;
     event.reply(Channels.WINDOW.OPEN_REPLY, openWinReplyInfo);
   });
-  console.log("🚀🚀 main start...")
+  // 关闭窗口
+  ipcMain.on(Channels.WINDOW.CLOSE, (_, name, isWebview) => {
+    if (!isWebview) {
+      windowManage.close(name);
+    } else {
+      windowManage.closeWebview(name);
+    }
+  });
+  console.log("🚀🚀 main start...");
 
   windowManage.createWindow("Login");
 });
