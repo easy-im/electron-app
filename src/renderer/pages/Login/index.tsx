@@ -5,7 +5,6 @@ import ReactDOM from "react-dom/client";
 import Input from "components/Input/index";
 import { Channels } from "share/channels";
 import Button from "components/Button";
-import "./styles.css";
 import "./index.less";
 // @ts-ignore  todo 待处理url引入问题
 import img from "../../assets/images/logo/logo.png";
@@ -54,7 +53,13 @@ const App = () => {
             placeholder="手机号"
             className="account-style"
           ></Input>
-          <Input size="large" inputType="password" placeholder="密码" className="pwd-style"></Input>
+          <Input
+            size="large"
+            inputType="password"
+            placeholder="密码"
+            className="pwd-style"
+          ></Input>
+          <div className="register-text">注册</div>
           <Button size="large" className="login-btn" block>
             登录
           </Button>
