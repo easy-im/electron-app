@@ -31,7 +31,7 @@ const App = () => {
         {!isMac && (
           <button
             type="button"
-            className="easyIcon close-btn"
+            className="easy-im-icon close-btn"
             title="关闭"
             onClick={(e) => {
               e.stopPropagation();
@@ -43,7 +43,7 @@ const App = () => {
         )}
       </div>
       <div className="logo">
-        <img src={`../../assets/images/logo/logo.png`} alt="" />
+        {/* <img src={`../../assets/images/logo/logo.png`} alt="" /> */}
         <img src={img} alt="" />
       </div>
       <div className="title-bar">Easy IM</div>
@@ -54,7 +54,7 @@ const App = () => {
             placeholder="手机号"
             className="account-style"
           ></Input>
-          <Input size="large" placeholder="密码" className="pwd-style"></Input>
+          <Input size="large" inputType="password" placeholder="密码" className="pwd-style"></Input>
           <Button size="large" className="login-btn" block>
             登录
           </Button>

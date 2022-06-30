@@ -1,12 +1,12 @@
 @font-face {
-  font-family: "easyIcon"; /* Project id 3464018 */
+  font-family: "easy-im-icon"; /* Project id 3464018 */
   src: url('iconfont.woff2?t=1655182711593') format('woff2'),
        url('iconfont.woff?t=1655182711593') format('woff'),
        url('iconfont.ttf?t=1655182711593') format('truetype');
 }
 
-.easyIcon {
-  font-family: "easyIcon" !important;
+.easy-im-icon {
+  font-family: "easy-im-icon" !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;

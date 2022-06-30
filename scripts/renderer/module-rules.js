@@ -1,8 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { useFileLoader } = require("./utils");
 const moduleRulesCss = require("./module-rules-css");
-const moduleRulesLess = require("./module-rules-less")
-
+const moduleRulesLess = require("./module-rules-less");
 
 module.exports = function (isProduction) {
   return [
@@ -37,18 +36,27 @@ module.exports = function (isProduction) {
     },
     moduleRulesCss(isProduction),
     moduleRulesLess(isProduction),
+    // {
+    //   test: /\.(png|jpe?g|gif)(\?\S*)?$/,
+    //   use: [useFileLoader("images")],
+    // },
     {
-      test: /\.(png|jpe?g|gif)(\?\S*)?$/,
-      use: [useFileLoader("images")],
+      test: /\.png$/,
+      loader: 'file-loader',
+      options: {
+        name: '[name].[ext]',
+        outputPath: 'images'
+      }
     },
-    {
-      test: /\.(wav|mp3)$/,
-      use: [useFileLoader("audio")],
-    },
-    {
-      test: /\.(svga)$/,
-      use: [useFileLoader("svga")],
-    },
+
+    // {
+    //   test: /\.(wav|mp3)$/,
+    //   use: [useFileLoader("audio")],
+    // },
+    // {
+    //   test: /\.(svga)$/,
+    //   use: [useFileLoader("svga")],
+    // },
     {
       test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
       use: [useFileLoader("fonts")],
