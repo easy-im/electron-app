@@ -1,13 +1,17 @@
+/** @format */
+
 import { ipcRenderer } from "electron";
 import React from "react";
 import "renderer/assets/base.css";
 import ReactDOM from "react-dom/client";
 import Input from "components/Input/index";
 import { Channels } from "share/channels";
+import { setUser } from "utils/index";
 import Button from "components/Button";
 import "./index.less";
 // @ts-ignore  todo 待处理url引入问题
 import img from "../../assets/images/logo/logo.png";
+import { api_login } from "../../api/login";
 
 const App = () => {
   const openUpdater = () => {
@@ -16,8 +20,17 @@ const App = () => {
     });
   };
 
-  const onSubmit = () => {};
+  const onSubmit = (e: any) => {
+    api_login({ a: 1 }).then((res) => {
+      setUser(res);
+    });
+    
+  };
   const closeWindow = () => {
+    ipcRenderer.send(Channels.WINDOW.OPEN, {
+      name: "XAHomePage",
+      confirmBeforeClose: true
+    })
     ipcRenderer.send(Channels.WINDOW.CLOSE, "Login");
   };
 
@@ -47,7 +60,7 @@ const App = () => {
       </div>
       <div className="title-bar">Easy IM</div>
       <div className="content">
-        <form onSubmit={onSubmit} className="form-wrapper">
+        <form onSubmit={onSubmit} className="form-wrapper" action="#">
           <Input
             size="large"
             placeholder="手机号"

@@ -18,6 +18,9 @@ const Channels = {
     CLOSE: "close-window",
     CLOSE_ALL_WINDOWS: "close-all-windows",
   },
+  DATA: {
+    SET_CURRENT_USER: "set-current-user",
+  },
 }
 
 export { Channels }

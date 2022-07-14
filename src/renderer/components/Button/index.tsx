@@ -7,12 +7,17 @@ interface Iprops {
   children: React.ReactNode;
   block?: boolean;
   className?: string;
+  onClick?: (params?: any) => void
 }
 
 const Button: React.FC<Iprops> = React.memo(
-  ({ size, loading, className, block = false, children }) => {
+  ({ size, loading, onClick = () => {}, className, block = false, children }) => {
     return (
       <button
+        onClick={(e) => {
+          e.stopPropagation()
+          onClick()
+        }}
         className={`btn-style primary ${block && "block"} ${size} ${className}`}
       >
         <div className="lds-ring">
