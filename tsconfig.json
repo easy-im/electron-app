@@ -11,7 +11,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "components/*": ["./src/renderer/components/*"],
-      "share/*": ["./src/share/*"]
+      "share/*": ["./src/share/*"],
+      "utils/*": ["./src/renderer/utils/*"]
     }
   },
   "ts-node": {
