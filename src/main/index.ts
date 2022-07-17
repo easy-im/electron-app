@@ -44,6 +44,11 @@ app.whenReady().then(async () => {
       windowManage.closeWebview(name);
     }
   });
+
+  ipcMain.on(Channels.DATA.SET_CURRENT_USER, (event, data) => {
+    event.returnValue = true
+  })
+
   console.log("🚀🚀 main start...");
 
   windowManage.createWindow("Login");

@@ -35,9 +35,13 @@ const App = () => {
 
   const onSubmit = (e: any) => {
     api_login({ mobile: data.mobile, password: data.password }).then((res) => {
-      console.log("res", res)
-      setUser(res.data);
-    });
+      if(res.data) {
+        setUser(res.data);
+      } else {
+        console.log("登录失败", res.errmsg)
+      }
+    }).catch((err) => {
+    })
     
   };
   const closeWindow = () => {
