@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useMemo } from "react";
 import "./index.less";
 
@@ -7,25 +9,34 @@ interface Iprops {
   children: React.ReactNode;
   block?: boolean;
   className?: string;
-  onClick?: (params?: any) => void
+  onClick?: (params?: any) => void;
 }
 
 const Button: React.FC<Iprops> = React.memo(
-  ({ size, loading, onClick = () => {}, className, block = false, children }) => {
+  ({
+    size,
+    loading,
+    onClick = () => {},
+    className,
+    block = false,
+    children,
+  }) => {
     return (
       <button
         onClick={(e) => {
-          e.stopPropagation()
-          onClick()
+          e.stopPropagation();
+          onClick();
         }}
         className={`btn-style primary ${block && "block"} ${size} ${className}`}
       >
-        <div className="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+        {loading && (
+          <div className="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
         {children ? children : null}
       </button>
     );

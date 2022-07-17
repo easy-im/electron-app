@@ -10,6 +10,7 @@ interface Iprops extends NSInputProps.InputProps {
   className?: string;
   leftIconCode?: string;
   rightIconCode?: string;
+  errorMsg?: string;
   onClickRightIcon?: () => void;
 }
 
@@ -23,7 +24,8 @@ const Input: React.FC<Iprops> = React.memo(
     value,
     onClickRightIcon = () => {},
     onInput,
-    maxlength=112
+    maxlength=112,
+    errorMsg=''
   }) => {
     const [type, setType] = useState(inputType);
 
@@ -37,7 +39,7 @@ const Input: React.FC<Iprops> = React.memo(
     };
 
     return (
-      <div className={`input-wrapper ${size} ${className}`}>
+      <div className={`input-wrapper ${size} ${className} ${errorMsg && 'error-wrap'}`}>
         <input className="input-type" maxLength={maxlength} value={value} onInput={onInput} placeholder={placeholder} type={type} />
         {rightIconCode && (
           <span className="right-icon easy-im-icon" onClick={onClickRightIcon}>
@@ -53,6 +55,7 @@ const Input: React.FC<Iprops> = React.memo(
             )}
           </span>
         )}
+        <span className="error-msg">{errorMsg}</span>
       </div>
     );
   }
