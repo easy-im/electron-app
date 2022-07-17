@@ -12,7 +12,8 @@
       "@/*": ["./src/*"],
       "components/*": ["./src/renderer/components/*"],
       "share/*": ["./src/share/*"],
-      "utils/*": ["./src/renderer/utils/*"]
+      "utils/*": ["./src/renderer/utils/*"],
+      "api/*": ["./src/renderer/api/*"]
     },
     "typeRoots": [
       "node_modules/@types",

@@ -11,26 +11,17 @@ import Button from "components/Button";
 import "./index.less";
 // @ts-ignore  todo 待处理url引入问题
 import img from "../../assets/images/logo/logo.png";
-import { api_login } from "../../api/login";
+import LoginPage from './components/LoginPage/LoginPage'
+import RegisterPage from './components/RegisterPage/RegisterPage'
 
+const PageType = {
+  Login: "login",
+  Register: "register",
+};
 const App = () => {
-  const [accounts, setAccounts] = useState({
-    mobile: "",
-    password: "",
-  });
-
   const [data, setData] = useState({
-    mobileErrInfo: "",
-    passwordErrInfo: "",
-    loading: false
+    pageType: PageType.Login,
   });
-
-  const onChange = ({ e, type }: { e: any; type: "mobile" | "password" }) => {
-    setAccounts((pre) => ({
-      ...pre,
-      [type]: e.target.value,
-    }));
-  };
 
   const openUpdater = () => {
     ipcRenderer.send(Channels.WINDOW.OPEN, {
@@ -38,57 +29,12 @@ const App = () => {
     });
   };
 
-  const onSubmit = (e: any) => {
-    setData({
-      loading: true,
-      mobileErrInfo: '',
-      passwordErrInfo: ''
-    });
-    
-    if(!accounts.mobile) {
-      setData((pre) => ({
-        ...pre,
-        mobileErrInfo: '请输入帐号',
-        loading: false
-      }));
-      return
-    }
-
-    if(!accounts.password) {
-      setData((pre) => ({
-        ...pre,
-        passwordErrInfo: '请输入密码',
-        loading: false
-      }));
-      return
-    }
-   
-
-    api_login({ mobile: accounts.mobile, password: accounts.password })
-      .then((res) => {
-        if (res.data) {
-          setUser(res.data);
-          setData((pre) => ({
-            ...pre,
-            loading: false
-          }));
-        } else {
-          console.log("登录失败", res.errmsg);
-          setData({
-            loading: false,
-            mobileErrInfo: res.errmsg || "登录失败",
-            passwordErrInfo: res.errmsg || "登录失败",
-          });
-        }
-      })
-      .catch((err) => {
-        setData({
-          loading: false,
-          mobileErrInfo:  "登录失败",
-          passwordErrInfo: "登录失败",
-        });
-      });
-  };
+  const changePageType = (type = PageType.Login) => {
+    setData((pre) => ({
+      ...pre,
+      pageType: type
+    }));
+  }
 
   const closeWindow = () => {
     ipcRenderer.send(Channels.WINDOW.OPEN, {
@@ -124,34 +70,12 @@ const App = () => {
       </div>
       <div className="title-bar">Easy IM</div>
       <div className="content">
-        <form onSubmit={onSubmit} className="form-wrapper" action="#">
-          <Input
-            size="large"
-            placeholder="手机号"
-            className="account-style"
-            value={accounts.mobile}
-            maxlength={11}
-            errorMsg={data.mobileErrInfo}
-            onInput={(e: any) => {
-              onChange({ e, type: "mobile" });
-            }}
-          ></Input>
-          <Input
-            size="large"
-            inputType="password"
-            placeholder="密码"
-            className="pwd-style"
-            value={accounts.password}
-            errorMsg={data.passwordErrInfo}
-            onInput={(e: any) => {
-              onChange({ e, type: "password" });
-            }}
-          ></Input>
-          <div className="register-text">注册</div>
-          <Button size="large" loading={data.loading} className="login-btn" block>
-            登录
-          </Button>
-        </form>
+        {/* 登录 */}
+        {data.pageType === PageType.Login && (
+          <LoginPage toRegister={() => {changePageType(PageType.Register)}} />
+        )}
+        {/* {注册} */}
+        {data.pageType === PageType.Register && <RegisterPage  toLogin={() => {changePageType(PageType.Login)}}  />}
       </div>
     </div>
   );
