@@ -4,6 +4,6 @@ import http from "./http"
  * 
  */
 export function api_login(params : any) {
-  const url = "/manta/api/v1.1/electron/tutor/live_lessons"
-  return http.get(url, { params })
+  const url = "/user/login"
+  return http.put(url, params)
 }

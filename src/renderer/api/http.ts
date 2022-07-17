@@ -1,7 +1,7 @@
 import axios from "axios"
 import { getUser } from "../utils/User"
-import config from '../configs/index';
-
+import Config from '../configs/index';
+console.log('))))))',Config)
 
 function authTokenGetter() {
   const currentUser = getUser()
@@ -9,7 +9,7 @@ function authTokenGetter() {
 }
 
 const instance = axios.create({
-  baseURL: config.baseUrl,
+  baseURL: Config.baseUrl,
   headers: {
    'content-type': 'application/json'
   }
@@ -17,8 +17,9 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config: any) => {
-    config.baseURL = config.baseUrl
-    config.headers["Authorization"] = authTokenGetter()
+    console.log("config.baseUrl,", config)
+    config.baseURL = Config.baseUrl
+    config.headers["x-access-token"] = authTokenGetter()
     return config
   },
   (error : any) => {
@@ -28,7 +29,9 @@ instance.interceptors.request.use(
 
 // 拦截响应
 instance.interceptors.response.use(
-  (response: any) => response,
+  (response: any) => {
+    return response?.data || response
+  },
   (error: any) => {
     if (error.response && error.response.status === 401) {
       // @todo 需要登录注册模块支持

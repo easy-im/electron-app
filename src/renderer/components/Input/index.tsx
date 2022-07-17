@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from "react";
 
 import "./index.less";
-interface Iprops {
+interface Iprops extends NSInputProps.InputProps {
   size?: "large" | "middle" | "small";
   inputType?: "text" | "password" | "number";
   placeholder?: string;
@@ -19,8 +19,11 @@ const Input: React.FC<Iprops> = React.memo(
     placeholder = "请输入",
     className,
     rightIconCode,
-    onClickRightIcon = () => {},
     inputType = "text",
+    value,
+    onClickRightIcon = () => {},
+    onInput,
+    maxlength=112
   }) => {
     const [type, setType] = useState(inputType);
 
@@ -32,9 +35,10 @@ const Input: React.FC<Iprops> = React.memo(
         setType("password");
       }
     };
+
     return (
       <div className={`input-wrapper ${size} ${className}`}>
-        <input className="input-type" placeholder={placeholder} type={type} />
+        <input className="input-type" maxLength={maxlength} value={value} onInput={onInput} placeholder={placeholder} type={type} />
         {rightIconCode && (
           <span className="right-icon easy-im-icon" onClick={onClickRightIcon}>
             {rightIconCode}

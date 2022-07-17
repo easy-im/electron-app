@@ -2,6 +2,8 @@ import { ipcRenderer } from "electron"
 import { Channels } from "share/channels"
 
 const currentUserLocalKey = "current_login_user"
+export const CURRENT_USER_KEY = '@STORAGE/CURRENT_USER';
+
 export const isPreventAutoLoginKey = "is_prevent_auto_login"
 export const isPreventAutoLoginEnum = {
   yes: "1",

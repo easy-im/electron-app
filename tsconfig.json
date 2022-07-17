@@ -13,7 +13,11 @@
       "components/*": ["./src/renderer/components/*"],
       "share/*": ["./src/share/*"],
       "utils/*": ["./src/renderer/utils/*"]
-    }
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "./typings/"
+    ],
   },
   "ts-node": {
     "compilerOptions": {
