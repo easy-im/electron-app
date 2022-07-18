@@ -99,8 +99,6 @@ const LoginPage: React.FC<Iprops> = ({ toRegister }) => {
     ipcRenderer.send(Channels.WINDOW.CLOSE, "Login");
   };
 
-  const isMac = true;
-
   return (
     <form onSubmit={onSubmit} className="loginpage-wrapper" action="#">
       <Input
