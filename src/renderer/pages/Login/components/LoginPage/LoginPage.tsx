@@ -5,7 +5,7 @@ import Input from "components/Input/index";
 import { Channels } from "share/channels";
 import { setUser } from "utils/index";
 import Button from "components/Button";
-import { api_login } from "api/login";
+import { api_login } from "@/renderer/api/user";
 import "./LoginPage.less";
 
 interface Iprops {

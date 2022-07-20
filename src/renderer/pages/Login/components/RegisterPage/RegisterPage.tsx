@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "renderer/assets/base.css";
 import Button from "components/Button";
 import Input from "components/Input/index";
-import { api_register } from "api/login";
+import { api_register } from "@/renderer/api/user";
 import { isPhoneNumber } from "utils/index";
 import "./RegisterPage.less";
 
