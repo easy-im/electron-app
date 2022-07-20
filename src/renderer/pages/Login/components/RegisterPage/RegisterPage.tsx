@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import "renderer/assets/base.css";
 import Button from "components/Button";
 import Input from "components/Input/index";
-import { api_login } from "api/login";
+import { api_register } from "api/login";
+import { isPhoneNumber } from "utils/index";
 import "./RegisterPage.less";
 
 const FormLable: React.FC<{name: string,  children?: React.ReactNode}> = ({name = '', children}) => {
@@ -19,17 +20,20 @@ interface Iprops {
 const RegisterPage: React.FC<Iprops> = ({ toLogin }) => {
 
   const [accounts, setAccounts] = useState({
+    nickname: "",
     mobile: "",
     password: "",
+    password2: ""
   });
 
   const [data, setData] = useState({
     mobileErrInfo: "",
     passwordErrInfo: "",
+    password2ErrInfo: "",
     loading: false,
   });
 
-  const onChange = ({ e, type }: { e: any; type: "mobile" | "password" }) => {
+  const onChange = ({ e, type }: { e: any; type: "mobile" | "password" | 'nickname' | 'password2' }) => {
     setAccounts((pre) => ({
       ...pre,
       [type]: e.target.value,
@@ -37,6 +41,26 @@ const RegisterPage: React.FC<Iprops> = ({ toLogin }) => {
   };
 
   const onRegister = (e: any) => {
+    if (!isPhoneNumber(accounts.mobile)) {
+      setData((pre) => ({
+        ...pre,
+        mobileErrInfo: '手机号不正确'
+      }))
+    } else if (accounts.password || accounts.password.length < 6 || accounts.password.length > 18) {
+      setData((pre) => ({
+        ...pre,
+        passwordErrInfo: '密码格式不对'
+      }))
+    } else if (accounts.password !== accounts.password2) {
+      setData((pre) => ({
+        ...pre,
+        passwordErrInfo: '两次密码不相同',
+        password2ErrInfo: '两次密码不相同'
+      }))
+    } else {
+      api_register({mobile: accounts.mobile, password: accounts.password, nickname: accounts.nickname}).then(res => {
+        // 登录成功跳转，登陆页面
+      })
   };
 
   return (
@@ -59,11 +83,11 @@ const RegisterPage: React.FC<Iprops> = ({ toLogin }) => {
           size="large"
           placeholder="昵称"
           className="account-style"
-          value={accounts.mobile}
+          value={accounts.nickname}
           maxlength={11}
           errorMsg={data.mobileErrInfo}
           onInput={(e: any) => {
-            onChange({ e, type: "mobile" });
+            onChange({ e, type: "nickname" });
           }}
         ></Input>
        </FormLable>
@@ -87,7 +111,7 @@ const RegisterPage: React.FC<Iprops> = ({ toLogin }) => {
           placeholder="重复密码"
           className="pwd-style"
           value={accounts.password}
-          errorMsg={data.passwordErrInfo}
+          errorMsg={data.password2ErrInfo}
           onInput={(e: any) => {
             onChange({ e, type: "password" });
           }}

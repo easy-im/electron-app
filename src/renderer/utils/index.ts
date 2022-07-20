@@ -34,3 +34,7 @@ export function removeUser () {
   localStorage.setItem(isPreventAutoLoginKey, isPreventAutoLoginEnum.yes)
   console.log(`设置currentUser${result ? "成功" : "失败"}`)
 }
+
+export const isPhoneNumber = (number: number | string) => {
+  return /^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57]|19[0-9])[0-9]{8}$/.test('' + number);
+};
