@@ -41,15 +41,22 @@ const RegisterPage: React.FC<Iprops> = ({ toLogin }) => {
   };
 
   const onRegister = (e: any) => {
+    setData((pre) => ({
+      ...pre,
+      mobileErrInfo: "",
+      passwordErrInfo: "",
+      password2ErrInfo: "",
+      loading: false,
+    }))
     if (!isPhoneNumber(accounts.mobile)) {
       setData((pre) => ({
         ...pre,
         mobileErrInfo: '手机号不正确'
       }))
-    } else if (accounts.password || accounts.password.length < 6 || accounts.password.length > 18) {
+    } else if (!accounts.password || accounts.password.length < 6 || accounts.password.length > 18) {
       setData((pre) => ({
         ...pre,
-        passwordErrInfo: '密码格式不对'
+        passwordErrInfo: '请输入6～18位密码'
       }))
     } else if (accounts.password !== accounts.password2) {
       setData((pre) => ({
@@ -59,8 +66,12 @@ const RegisterPage: React.FC<Iprops> = ({ toLogin }) => {
       }))
     } else {
       api_register({mobile: accounts.mobile, password: accounts.password, nickname: accounts.nickname}).then(res => {
-        // 登录成功跳转，登陆页面
+        // 注册成功跳转，登陆页面
+        toLogin()
+      }).catch(() => {
+        
       })
+    }
   };
 
   return (
@@ -110,10 +121,10 @@ const RegisterPage: React.FC<Iprops> = ({ toLogin }) => {
           inputType="password"
           placeholder="重复密码"
           className="pwd-style"
-          value={accounts.password}
+          value={accounts.password2}
           errorMsg={data.password2ErrInfo}
           onInput={(e: any) => {
-            onChange({ e, type: "password" });
+            onChange({ e, type: "password2" });
           }}
         ></Input>
        </FormLable>
