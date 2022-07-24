@@ -16,7 +16,7 @@ const PageType = {
 };
 const App = () => {
   const [data, setData] = useState({
-    pageType: PageType.Register,
+    pageType: PageType.Login,
   });
 
   const openUpdater = () => {
