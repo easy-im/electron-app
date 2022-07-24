@@ -6,11 +6,7 @@ import "renderer/assets/base.css";
 import ReactDOM from "react-dom/client";
 import Input from "components/Input/index";
 import { Channels } from "share/channels";
-import { setUser } from "utils/index";
-import Button from "components/Button";
 import "./index.less";
-// @ts-ignore  todo 待处理url引入问题
-import img from "../../assets/images/logo/logo.png";
 import LoginPage from './components/LoginPage/LoginPage'
 import RegisterPage from './components/RegisterPage/RegisterPage'
 
@@ -20,7 +16,7 @@ const PageType = {
 };
 const App = () => {
   const [data, setData] = useState({
-    pageType: PageType.Login,
+    pageType: PageType.Register,
   });
 
   const openUpdater = () => {
@@ -64,11 +60,6 @@ const App = () => {
           </button>
         )}
       </div>
-      <div className="logo">
-        {/* <img src={`../../assets/images/logo/logo.png`} alt="" /> */}
-        <img src={img} alt="" />
-      </div>
-      <div className="title-bar">Easy IM</div>
       <div className="content">
         {/* 登录 */}
         {data.pageType === PageType.Login && (

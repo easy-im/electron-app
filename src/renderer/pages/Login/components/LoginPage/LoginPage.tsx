@@ -1,3 +1,5 @@
+/** @format */
+
 import { ipcRenderer } from "electron";
 import React, { useState } from "react";
 import "renderer/assets/base.css";
@@ -6,6 +8,8 @@ import { Channels } from "share/channels";
 import { setUser } from "utils/index";
 import Button from "components/Button";
 import { api_login } from "@/renderer/api/user";
+// @ts-ignore  todo 待处理url引入问题
+import img from "../../../../assets/images/logo/logo.png";
 import "./LoginPage.less";
 
 interface Iprops {
@@ -29,12 +33,6 @@ const LoginPage: React.FC<Iprops> = ({ toRegister }) => {
       ...pre,
       [type]: e.target.value,
     }));
-  };
-
-  const openUpdater = () => {
-    ipcRenderer.send(Channels.WINDOW.OPEN, {
-      name: "Updater",
-    });
   };
 
   const onSubmit = (e: any) => {
@@ -100,41 +98,48 @@ const LoginPage: React.FC<Iprops> = ({ toRegister }) => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="loginpage-wrapper" action="#">
-      <Input
-        size="large"
-        placeholder="手机号"
-        className="account-style"
-        value={accounts.mobile}
-        maxlength={11}
-        errorMsg={data.mobileErrInfo}
-        onInput={(e: any) => {
-          onChange({ e, type: "mobile" });
-        }}
-      ></Input>
-      <Input
-        size="large"
-        inputType="password"
-        placeholder="密码"
-        className="pwd-style"
-        value={accounts.password}
-        errorMsg={data.passwordErrInfo}
-        onInput={(e: any) => {
-          onChange({ e, type: "password" });
-        }}
-      ></Input>
-      <div
-        className="register-text"
-        onClick={() => {
-          toRegister();
-        }}
-      >
-        注册
+    <div>
+      <div className="logo">
+        {/* <img src={`../../assets/images/logo/logo.png`} alt="" /> */}
+        <img src={img} alt="" />
       </div>
-      <Button size="large" loading={data.loading} className="login-btn" block>
-        登录
-      </Button>
-    </form>
+      <div className="title-bar">Easy IM</div>
+      <form onSubmit={onSubmit} className="loginpage-wrapper" action="#">
+        <Input
+          size="large"
+          placeholder="手机号"
+          className="account-style"
+          value={accounts.mobile}
+          maxlength={11}
+          errorMsg={data.mobileErrInfo}
+          onInput={(e: any) => {
+            onChange({ e, type: "mobile" });
+          }}
+        ></Input>
+        <Input
+          size="large"
+          inputType="password"
+          placeholder="密码"
+          className="pwd-style"
+          value={accounts.password}
+          errorMsg={data.passwordErrInfo}
+          onInput={(e: any) => {
+            onChange({ e, type: "password" });
+          }}
+        ></Input>
+        <div
+          className="register-text"
+          onClick={() => {
+            toRegister();
+          }}
+        >
+          注册
+        </div>
+        <Button size="large" loading={data.loading} className="login-btn" block>
+          登录
+        </Button>
+      </form>
+    </div>
   );
 };
 
